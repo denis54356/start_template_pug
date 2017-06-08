@@ -1,8 +1,9 @@
 var gulp 			= require('gulp');
 var gulpLoadPlugins = require('gulp-load-plugins');
-var gulp 			= require('gulp-sass');
 
 var plugins 		= gulpLoadPlugins();
+
+//console.log('availiable plugins: ', Object.keys(plugins).join(', '));
 
 gulp.task('sass', function() {
 	return gulp.src('src/sass/**/*.sass')
@@ -28,8 +29,13 @@ gulp.task('concat.libs.css', function() {
 	.pipe(gulp.dest('src/css/concat'))
 });
 
-gulp.task('css', [
-	'sass',
-	'concat.all.css',
-	'concat.styles.css']);
+gulp.task('css', function() {
+	return gulp.src('src/css/concat/styles.css')
+	.pipe(plugins.rename({suffix: '.min', prefix : ''}))
+	.pipe(plugins.autoprefixer(['last 15 versions']))
+	.pipe(plugins.cleanCss()) // Опционально, закомментировать при отладке
+	.pipe(gulp.dest('dst/css'))
+});
+
+gulp.task('default');
 
