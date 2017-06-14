@@ -1,5 +1,6 @@
 @import "fonts"
 @import "vars"
+@import "libs"
 
 *::-webkit-input-placeholder
 	color: #666
@@ -17,6 +18,17 @@
 	color: #666
 	opacity: 1
 
+::-moz-selection 
+	background: #b3d4fc;
+	text-shadow: none;
+  
+::selection 
+	background: #b3d4fc;
+	text-shadow: none;
+  
+*, *:before, *:after
+	box-sizing border-box
+  
 body input:focus:required:invalid,
 body textarea:focus:required:invalid
 	color: #666
@@ -35,6 +47,63 @@ body
 	font-family: $default-font
 	overflow-x: hidden
 	opacity: 1
+
+h1,h2,h3,h4,h5,h6
+	margin 0
+
+ul,li
+	margin 0
+	padding 0
+	list-style-type none
+  
+p
+	margin 0
+  
+a
+	text-decoration none
+	color black
+
+audio,
+canvas,
+iframe,
+img,
+svg,
+video
+	vertical-align middle
+  
+textarea
+	resize none
+
+section
+	position relative
+	margin-bottom 20px
+
+input,
+select,
+button
+	outline none
+
+.hide
+	display none
+  
+.show
+	display block
+  
+.clearfix:before,
+.clearfix:after 
+	content: " ";
+	display: table;
+
+.clearfix:after 
+	clear: both;
+
+.clearfix 
+	*zoom: 1;
+
+.wrapper
+	width 100%
+	max-width 1000px
+	margin 0 auto
 
 .img-responsive
 	display: block

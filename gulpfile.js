@@ -34,13 +34,13 @@ gulp.task('sass', function() {
 });
 
 gulp.task('concat.all.css', function() {
-	return gulp.src(['src/css/compiled/**/*.css', '!src/css/compiled/main/**/*.css'])
+	return gulp.src('src/css/compiled/common/**/*.css')
 	.pipe(plugins.concat('all.css'))
 	.pipe(gulp.dest('src/css/concat'))
 });
 
 gulp.task('concat.styles.css', ['concat.all.css', 'sprites'], function() {
-	return gulp.src(['src/css/compiled/main/main.css', 'src/css/compiled/main/sprites.css', 'src/css/concat/all.css', 'src/css/compiled/main/media.css'])
+	return gulp.src(['src/css/compiled/main/sprites.css', 'src/css/compiled/main/main.css', 'src/css/concat/all.css', 'src/css/compiled/main/media.css'])
 	.pipe(plugins.concat('styles.css'))
 	.pipe(gulp.dest('src/css/concat'))
 });
@@ -67,7 +67,7 @@ gulp.task('concat.scripts.js', function() {
 });
 
 gulp.task('concat.libs.js', function() {
-	return gulp.src('src/js/libs/**/*.js')
+	return gulp.src(['src/js/jquery/jquery.min.js', 'src/js/libs/**/*.js'])
 	.pipe(plugins.concat('libs.js'))
 	.pipe(gulp.dest('src/js/concat'))
 });
@@ -81,7 +81,7 @@ gulp.task('js', ['concat.scripts.js', 'concat.libs.js'], function() {
 });
 
 gulp.task('pug', function() {
-	return gulp.src('src/tmpl/**/*.pug')
+	return gulp.src('src/pug/pages/**/*.pug')
 	.pipe(plugins.pug()) 
 	.on('error', onerror)
 	.pipe(gulp.dest('dst/'))
