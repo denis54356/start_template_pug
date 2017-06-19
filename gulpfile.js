@@ -76,6 +76,7 @@ gulp.task('js', ['concat.scripts.js', 'concat.libs.js'], function() {
 	return gulp.src(['src/js/concat/scripts.js', 'src/js/concat/libs.js'])
 	.pipe(plugins.rename({suffix: '.min', prefix : ''}))
 	.pipe(plugins.uglify()) 
+	.on('error', onerror)
 	.pipe(gulp.dest('dst/js'))
 	.pipe(browserSync.reload({stream: true}))
 });
@@ -153,8 +154,8 @@ gulp.task('watch', ['browser-sync'], function() {
 	gulp.watch('src/fonts/**/*.*', ['copy.fonts']);
 	gulp.watch('src/.htaccess', ['copy.htaccess']);
 	gulp.watch(['src/css/compiled/**/*.css','src/css/libs/**/*.css','src/sprites/*.*'], ['css']);
-	gulp.watch('src/js/libs/**/*.js', ['js']);
-	gulp.watch('src/tmpl/**/*.pug', ['pug']);
+	gulp.watch(['src/js/libs/**/*.js', 'src/js/common/**/*.js'], ['js']);
+	gulp.watch('src/pug/**/*.pug', ['pug']);
 	gulp.watch('dst/*.html', browserSync.reload);
 });
 
